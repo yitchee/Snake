@@ -33,5 +33,17 @@ void keyPressed()
     {
       Direction = "up";
     }
+    else if (keyCode == DOWN) 
+    {
+      Direction = "down";
+    }
+    else if (keyCode == LEFT) 
+    {
+      Direction = "left";
+    }
+    else if (keyCode == RIGHT) 
+    {
+      Direction = "right";
+    }
   }
 }
