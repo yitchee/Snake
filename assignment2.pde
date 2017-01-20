@@ -5,14 +5,33 @@ void setup()
   i=0;
   j=0;
   BlockSize = 20;
+  SnakeX = ((width/BlockSize)/2)*BlockSize;
+  SnakeY = ((height/BlockSize)/2)*BlockSize;
+  inc = BlockSize;
+  Direction = "";
 }
 
 int i, j;
-int BlockSize;
+int BlockSize, SnakeX, SnakeY, inc;
+String Direction;
 
 void draw()
 {
-  background(0);
-  drawGrid();
-  drawSnake();
+  if(frameCount % 15 == 0)
+  {
+    background(0);
+    drawGrid();
+    drawSnake();
+  }
+}
+
+void keyPressed() 
+{
+  if (key == CODED) 
+  {
+    if (keyCode == UP) 
+    {
+      Direction = "up";
+    }
+  }
 }

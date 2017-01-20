@@ -14,5 +14,13 @@ void drawGrid()
 void drawSnake()
 {
   fill(255);
-  rect(((width/BlockSize)/2)*BlockSize, ((height/BlockSize)/2)*BlockSize, BlockSize, BlockSize);
+  switch (Direction)
+  {
+    case "up":
+      rect(SnakeX, SnakeY-=inc, BlockSize, BlockSize);
+      break;
+    default:
+      rect(SnakeX, SnakeY, BlockSize, BlockSize);
+      break;
+  }
 }
