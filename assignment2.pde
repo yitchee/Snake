@@ -34,19 +34,31 @@ void keyPressed()
   {
     if (keyCode == UP) 
     {
-      Direction = "up";
+      if(Direction != "down")
+      {
+        Direction = "up";
+      }
     }
     else if (keyCode == DOWN) 
     {
-      Direction = "down";
+      if(Direction != "up")
+      {
+        Direction = "down";
+      }
     }
     else if (keyCode == LEFT) 
     {
-      Direction = "left";
+      if(Direction != "right")
+      {
+        Direction = "left";
+      }
     }
     else if (keyCode == RIGHT) 
     {
-      Direction = "right";
+      if(Direction != "left")
+      {
+        Direction = "right";
+      }
     }
   }
 }
