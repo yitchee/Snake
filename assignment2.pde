@@ -7,6 +7,7 @@ void setup()
   BlockSize = 20;
   SnakeX = ((width/BlockSize)/2)*BlockSize;
   SnakeY = ((height/BlockSize)/2)*BlockSize;
+  snakeHead = new Snake(SnakeX, SnakeY);
   inc = BlockSize;
   Direction = "";
 }
@@ -14,6 +15,7 @@ void setup()
 int i, j;
 int BlockSize, SnakeX, SnakeY, inc;
 String Direction;
+Snake snakeHead;
 
 void draw()
 {
@@ -21,7 +23,8 @@ void draw()
   {
     background(0);
     drawGrid();
-    drawSnake();
+    //drawSnake();
+    snakeHead.drawSnake2();
   }
 }
 
