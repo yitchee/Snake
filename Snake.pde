@@ -21,19 +21,19 @@ class Snake
     switch (Direction)
     {
       case "up":
-        rect(SnakeX, SnakeY-=inc, BlockSize, BlockSize);
+        rect(posX, posY-=inc, BlockSize, BlockSize);
         break;
       case "down":
-        rect(SnakeX, SnakeY+=inc, BlockSize, BlockSize);
+        rect(posX, posY+=inc, BlockSize, BlockSize);
         break;
       case "left":
-        rect(SnakeX-=inc, SnakeY, BlockSize, BlockSize);
+        rect(posX-=inc, posY, BlockSize, BlockSize);
         break;
       case "right":
-        rect(SnakeX+=inc, SnakeY, BlockSize, BlockSize);
+        rect(posX+=inc, posY, BlockSize, BlockSize);
         break;
       default:
-        rect(SnakeX, SnakeY, BlockSize, BlockSize);
+        rect(posX, posY, BlockSize, BlockSize);
         break;
     }
   }

@@ -33,3 +33,15 @@ void drawSnake()
       break;
   }
 }
+
+void checkBorder()
+{
+  if(snakeHead.posX < 0 || snakeHead.posX > width-1)
+  {
+    background(255);
+  }
+  if(snakeHead.posY < 0 || snakeHead.posY > height-1)
+  {
+    background(255);
+  }
+}

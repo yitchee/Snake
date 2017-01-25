@@ -25,6 +25,7 @@ void draw()
     drawGrid();
     //drawSnake();
     snakeHead.drawSnake2();
+    checkBorder();
   }
 }
 
