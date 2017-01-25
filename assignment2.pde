@@ -2,19 +2,22 @@ void setup()
 {
   size(600, 600);
   
+  score = 0;
   i=0;
   j=0;
   BlockSize = 25;
   inc = BlockSize;
   SnakeX = ((width/BlockSize)/2)*BlockSize;
   SnakeY = ((height/BlockSize)/2)*BlockSize;
+  FoodX = (int)(random(0,width/BlockSize))*inc;
+  FoodY = (int)(random(0,height/BlockSize))*inc;
   snakeHead = new Snake(SnakeX, SnakeY);
-  foods = new Food((int)(random(0,width/BlockSize))*inc, (int)(random(0,height/BlockSize))*inc);
+  foods = new Food(FoodX, FoodY);
   Direction = "";
 }
 
-int i, j;
-int BlockSize, SnakeX, SnakeY, inc;
+int i, j, score;
+int BlockSize, SnakeX, SnakeY, inc, FoodX, FoodY;
 String Direction;
 Snake snakeHead;
 Food foods;
@@ -25,10 +28,12 @@ void draw()
   {
     background(0);
     drawGrid();
-    //drawSnake();
-    snakeHead.drawSnake2();
+    eatFood();
     foods.createFood();
+    snakeHead.drawSnake2();
     checkBorder();
+    println(foods.posX, foods.posY);println(snakeHead.posX, snakeHead.posY);
+    println(score);
   }
 }
 

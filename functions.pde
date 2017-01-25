@@ -11,29 +11,6 @@ void drawGrid()
   }
 }
 
-void drawSnake()
-{
-  fill(255);
-  switch (Direction)
-  {
-    case "up":
-      rect(SnakeX, SnakeY-=inc, BlockSize, BlockSize);
-      break;
-    case "down":
-      rect(SnakeX, SnakeY+=inc, BlockSize, BlockSize);
-      break;
-    case "left":
-      rect(SnakeX-=inc, SnakeY, BlockSize, BlockSize);
-      break;
-    case "right":
-      rect(SnakeX+=inc, SnakeY, BlockSize, BlockSize);
-      break;
-    default:
-      rect(SnakeX, SnakeY, BlockSize, BlockSize);
-      break;
-  }
-}
-
 void checkBorder()
 {
   if(snakeHead.posX < 0 || snakeHead.posX > width-1)
@@ -43,5 +20,15 @@ void checkBorder()
   if(snakeHead.posY < 0 || snakeHead.posY > height-1)
   {
     background(255);
+  }
+}
+
+void eatFood()
+{
+  if((foods.posX == snakeHead.posX) && (foods.posY == snakeHead.posY))
+  {
+    score++;
+    foods.posX = (int)(random(0,width/BlockSize))*inc;
+    foods.posY = (int)(random(0,height/BlockSize))*inc;
   }
 }
