@@ -4,11 +4,12 @@ void setup()
   
   i=0;
   j=0;
-  BlockSize = 20;
+  BlockSize = 25;
+  inc = BlockSize;
   SnakeX = ((width/BlockSize)/2)*BlockSize;
   SnakeY = ((height/BlockSize)/2)*BlockSize;
   snakeHead = new Snake(SnakeX, SnakeY);
-  inc = BlockSize;
+  foods = new Food((int)(random(0,width/BlockSize))*inc, (int)(random(0,height/BlockSize))*inc);
   Direction = "";
 }
 
@@ -16,6 +17,7 @@ int i, j;
 int BlockSize, SnakeX, SnakeY, inc;
 String Direction;
 Snake snakeHead;
+Food foods;
 
 void draw()
 {
@@ -25,6 +27,7 @@ void draw()
     drawGrid();
     //drawSnake();
     snakeHead.drawSnake2();
+    foods.createFood();
     checkBorder();
   }
 }
