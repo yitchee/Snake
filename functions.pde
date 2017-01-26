@@ -30,5 +30,6 @@ void eatFood()
     score++;
     foods.posX = (int)(random(0,width/BlockSize))*inc;
     foods.posY = (int)(random(0,height/BlockSize))*inc;
+    snakeBody.add(new Snake());
   }
 }

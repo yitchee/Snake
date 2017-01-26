@@ -1,3 +1,9 @@
+/***************************************
+ * Name: Yit Chee Chin                 *
+ * Student No.: C15390501              *
+ * Year: DT228/2                       *
+ * OOP Assignment 2                    *
+ ***************************************/
 void setup()
 {
   size(600, 600);
@@ -5,6 +11,7 @@ void setup()
   score = 0;
   i=0;
   j=0;
+  frames = 15;
   BlockSize = 25;
   inc = BlockSize;
   SnakeX = ((width/BlockSize)/2)*BlockSize;
@@ -16,25 +23,28 @@ void setup()
   Direction = "";
 }
 
-int i, j, score;
+int i, j, score, frames;
 int BlockSize, SnakeX, SnakeY, inc, FoodX, FoodY;
 String Direction;
 Snake snakeHead;
+ArrayList<Snake> snakeBody = new ArrayList<Snake>();
 Food foods;
 
 void draw()
 {
-  if(frameCount % 15 == 0)
+  if(frameCount % frames == 0)
   {
     background(0);
     drawGrid();
-    eatFood();
-    foods.createFood();
-    snakeHead.drawSnake2();
+    snakeHead.drawSnake2();   
     checkBorder();
-    println(foods.posX, foods.posY);println(snakeHead.posX, snakeHead.posY);
-    println(score);
+    println(foods.posX, foods.posY);
+    println(snakeHead.posX, snakeHead.posY);
+    println("Score:  "+score);
+    println("Size:  "+snakeBody.size());
   }
+  eatFood();
+  foods.createFood();
 }
 
 void keyPressed() 
