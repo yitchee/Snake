@@ -5,8 +5,8 @@ class Snake
   
   Snake()
   {
-    posX = ((width/BlockSize)/2)*BlockSize;
-    posY = ((height/BlockSize)/2)*BlockSize;
+    posX = 0;
+    posY = 0;
   }
   
   Snake(int x, int y)
@@ -15,9 +15,9 @@ class Snake
     posY = y;
   }
   
-  void drawSnake2()
+  void drawSnake()
   {
-    fill(255);
+    //fill(255);
     switch (Direction)
     {
       case "up":

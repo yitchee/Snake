@@ -27,7 +27,7 @@ int i, j, score, frames;
 int BlockSize, SnakeX, SnakeY, inc, FoodX, FoodY;
 String Direction;
 Snake snakeHead;
-ArrayList<Snake> snakeBody = new ArrayList<Snake>();
+ArrayList<SnakeTail> snakeBody = new ArrayList<SnakeTail>();
 Food foods;
 
 void draw()
@@ -36,18 +36,20 @@ void draw()
   {
     background(0);
     drawGrid();
-    snakeHead.drawSnake2();   
+    fill(255);
+    moveSnake();
+    fill(120);
     checkBorder();
-    println(foods.posX, foods.posY);
-    println(snakeHead.posX, snakeHead.posY);
-    println("Score:  "+score);
-    println("Size:  "+snakeBody.size());
+    //println(foods.posX, foods.posY);
+    //println(snakeHead.posX, snakeHead.posY);
+    //println("Score:  "+score);
+    //println("Size:  "+snakeBody.size());
   }
   eatFood();
   foods.createFood();
 }
 
-void keyPressed() 
+void keyPressed()
 {
   if (key == CODED) 
   {
@@ -72,7 +74,7 @@ void keyPressed()
         Direction = "left";
       }
     }
-    else if (keyCode == RIGHT) 
+    else if (keyCode == RIGHT)
     {
       if(Direction != "left")
       {
