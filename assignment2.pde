@@ -11,7 +11,7 @@ void setup()
   score = 0;
   i=0;
   j=0;
-  frames = 15;
+  frames = 7;
   BlockSize = 25;
   inc = BlockSize;
   SnakeX = ((width/BlockSize)/2)*BlockSize;
@@ -23,7 +23,7 @@ void setup()
   Direction = "";
 }
 
-int i, j, score, frames;
+int i, j, score, frames, tempX, tempY;
 int BlockSize, SnakeX, SnakeY, inc, FoodX, FoodY;
 String Direction;
 Snake snakeHead;
@@ -38,7 +38,6 @@ void draw()
     drawGrid();
     fill(255);
     moveSnake();
-    fill(120);
     checkBorder();
     //println(foods.posX, foods.posY);
     //println(snakeHead.posX, snakeHead.posY);
