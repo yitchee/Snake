@@ -13,7 +13,7 @@ void setup()
   score = 0;
   i=0;
   j=0;
-  frames = 7;
+  frames = 3;
   BlockSize = 25;
   inc = BlockSize;
   SnakeX = ((width/BlockSize)/2)*BlockSize;
@@ -38,7 +38,7 @@ int i, j, score, frames, tempX, tempY;
 int BlockSize, SnakeX, SnakeY, inc, FoodX, FoodY;
 String Direction;
 Snake snakeHead;
-Button playButton;
+Button playButton, againButton;
 ArrayList<SnakeTail> snakeBody = new ArrayList<SnakeTail>();
 Food foods;
 PFont blockFont;
@@ -55,13 +55,19 @@ void draw()
       //In-game
       if(frameCount % frames == 0)
       {
+        //moves snake and checks if its within limits
         drawGrid();
         fill(255);
         moveSnake();
         checkBorder();
       }
+      //adds to snake if food is eaten and creates new food
       eatFood();
       foods.createFood();
+      break;
+    case 2:
+      //game over screen
+      gameOver();
       break;
     default:
       //If something doesn't work, white background
@@ -72,7 +78,7 @@ void draw()
 
 void keyPressed()
 {
-  if (key == CODED) 
+  if (key == CODED && gameState == 1) 
   {
     if (keyCode == UP) 
     {
@@ -102,10 +108,6 @@ void keyPressed()
         Direction = "right";
       }
     }
-    else
-    {
-      Direction = "";
-    }
   }
 }
 
@@ -113,7 +115,7 @@ void mouseClicked()
 {
   if (playButton.checkPress() == true)
   {
-    if (gameState == 0)
+    if (gameState == 0 || gameState == 2)
     {
       gameState = 1;
     }

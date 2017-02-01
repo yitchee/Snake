@@ -5,7 +5,6 @@ class SnakeTail extends Snake
   {
     super();
     //sqColor = color(random(255),random(255),random(255));
-    
   }
   SnakeTail(int x, int y)
   {

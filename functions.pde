@@ -7,6 +7,7 @@ int menu()
 
 void drawGrid()
 {
+  rectMode(CORNER);
   background(0);
   for (i=0; i<width/BlockSize; i++)
   {
@@ -21,24 +22,38 @@ void drawGrid()
 
 void checkBorder()
 {
+  //checks if within limits and resets if not
   if(snakeHead.posX < 0 || snakeHead.posX > width-1)
   {
-    gameState = 0;
+    gameState = 2;
     SnakeX = ((width/BlockSize)/2)*BlockSize;
     SnakeY = ((height/BlockSize)/2)*BlockSize;
     snakeHead = new Snake(SnakeX, SnakeY);
+    for (int i=snakeBody.size()-1; i>=0; i--);
+    {
+      snakeBody.clear();
+      score = 0;
+    }
+    Direction = "";
   }
   if(snakeHead.posY < 0 || snakeHead.posY > height-1)
   {
-    gameState = 0;
+    gameState = 2;
     SnakeX = ((width/BlockSize)/2)*BlockSize;
     SnakeY = ((height/BlockSize)/2)*BlockSize;
     snakeHead = new Snake(SnakeX, SnakeY);
+    for (int i=(snakeBody.size())-1; i>=0; i--);
+    {
+      snakeBody.clear();
+      score = 0;
+    }
+    Direction = "";
   }
 }
 
 void eatFood()
 {
+  //adds to snake and creates new food
   if((foods.posX == snakeHead.posX) && (foods.posY == snakeHead.posY))
   {
     score++;
@@ -54,24 +69,20 @@ void eatFood()
 void addSnake()
 {
   int x, y;
-
-  if(score == 1)
-  {
-    x = snakeHead.posX;
-    y = snakeHead.posY;
-    println("addSnake: "+x, y);
-  }
-  else
+  //creates a new block at the end of the snake
+  if(score != 1)
   {
     x = snakeBody.get(snakeBody.size()-1).posX;
     y = snakeBody.get(snakeBody.size()-1).posY;
     x = tempX;
     y = tempY;
-    println("addSnake: "+x, y);
+  }
+  else
+  {
+    x = snakeHead.posX;
+    y = snakeHead.posY;
   }
   snakeBody.add(new SnakeTail(x, y));
-  println("arraylist:  ");
-  //println(snakeBody.size());
 }
 
 void moveSnake()
@@ -79,6 +90,7 @@ void moveSnake()
   int x, y;
   SnakeTail trail;
   
+  //sets new position for each block to the one before it, from the end to the top
   for(int i=snakeBody.size()-1; i > 0; i--)
   {
     x = snakeBody.get(i-1).posX;
@@ -86,6 +98,7 @@ void moveSnake()
     trail = new SnakeTail(x, y);
     snakeBody.set(i, trail);
   }
+  //sets the 2nd block to the head's position
   x = snakeHead.posX;
   y = snakeHead.posY;
   trail = new SnakeTail(x, y);
@@ -94,18 +107,18 @@ void moveSnake()
   {
     snakeBody.set(0, trail);
   }
-  
+  //draws the whole snake
   snakeHead.drawSnake();
   for(int i=0; i < snakeBody.size(); i++)
   {
     snakeBody.get(i).drawTail();
   }
-  //if()
-  {
-    println("for:  ");
-    for(int i=0; i < snakeBody.size(); i++)
-    {
-      println(i+":",snakeBody.get(i).posX,snakeBody.get(i).posY);
-    }
-  }
+}
+
+void gameOver()
+{
+  //When player loses
+  background(0);
+  againButton = new Button(width/2, height/2, mainButtonW*1.5, mainButtonH*1.2, "Play Again");
+  againButton.drawButton();
 }

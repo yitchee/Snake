@@ -23,6 +23,7 @@ class Button
     stroke(255);
     noFill();
     rect(x, y, sizeW, sizeH);
+    fill(255);
     text(buttonText, x, y);
   }
   
