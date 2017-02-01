@@ -25,29 +25,22 @@ void checkBorder()
   //checks if within limits and resets if not
   if(snakeHead.posX < 0 || snakeHead.posX > width-1)
   {
-    gameState = 2;
-    SnakeX = ((width/BlockSize)/2)*BlockSize;
-    SnakeY = ((height/BlockSize)/2)*BlockSize;
-    snakeHead = new Snake(SnakeX, SnakeY);
-    for (int i=snakeBody.size()-1; i>=0; i--);
-    {
-      snakeBody.clear();
-      score = 0;
-    }
-    Direction = "";
+    resetSnake();
   }
-  if(snakeHead.posY < 0 || snakeHead.posY > height-1)
+  else if(snakeHead.posY < 0 || snakeHead.posY > height-1)
   {
-    gameState = 2;
-    SnakeX = ((width/BlockSize)/2)*BlockSize;
-    SnakeY = ((height/BlockSize)/2)*BlockSize;
-    snakeHead = new Snake(SnakeX, SnakeY);
-    for (int i=(snakeBody.size())-1; i>=0; i--);
+    resetSnake();
+  }
+}
+
+void checkCollision()
+{
+  for (int i=0; i<snakeBody.size()-1; i++)
+  {
+    if((snakeHead.posX == snakeBody.get(i).posX) && (snakeHead.posX == snakeBody.get(i).posY))
     {
-      snakeBody.clear();
-      score = 0;
+      resetSnake();
     }
-    Direction = "";
   }
 }
 
@@ -113,6 +106,20 @@ void moveSnake()
   {
     snakeBody.get(i).drawTail();
   }
+}
+
+void resetSnake()
+{
+  gameState = 2;
+  SnakeX = ((width/BlockSize)/2)*BlockSize;
+  SnakeY = ((height/BlockSize)/2)*BlockSize;
+  snakeHead = new Snake(SnakeX, SnakeY);
+  for (int i=(snakeBody.size())-1; i>=0; i--);
+  {
+    snakeBody.clear();
+    score = 0;
+  }
+  Direction = "";
 }
 
 void gameOver()
