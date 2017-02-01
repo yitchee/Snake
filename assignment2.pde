@@ -8,6 +8,7 @@ void setup()
 {
   size(600, 600);
   
+  fontSize = 32;
   gameState = 0;
   score = 0;
   i=0;
@@ -22,15 +23,25 @@ void setup()
   snakeHead = new Snake(SnakeX, SnakeY);
   foods = new Food(FoodX, FoodY);
   Direction = "";
+  mainButtonW = 150;
+  mainButtonH = 75;
+  playButton = new Button(width/2, height/2, mainButtonW, mainButtonH, "Play", 40);
+  
+  //Loading in a font file
+  blockFont = createFont("FFFFORWA.TTF", fontSize);
+  textFont(blockFont);
+  textAlign(CENTER, CENTER);
 }
 
-int gameState;
+int gameState, mainButtonW, mainButtonH, fontSize;
 int i, j, score, frames, tempX, tempY;
 int BlockSize, SnakeX, SnakeY, inc, FoodX, FoodY;
 String Direction;
 Snake snakeHead;
+Button playButton;
 ArrayList<SnakeTail> snakeBody = new ArrayList<SnakeTail>();
 Food foods;
+PFont blockFont;
 
 void draw()
 {

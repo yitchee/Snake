@@ -20,8 +20,10 @@ class Button
   
   void drawButton()
   {
+    rectMode(CENTER);
     stroke(255);
     noFill();
     rect(x, y, sizeW, sizeH);
+    text(buttonText, x, y);
   }
 }

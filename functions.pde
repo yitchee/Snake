@@ -1,6 +1,7 @@
 int menu()
 {
   background(0);
+  playButton.drawButton();
   return 0;
 }
 
