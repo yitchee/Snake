@@ -1,3 +1,9 @@
+int menu()
+{
+  background(0);
+  return 0;
+}
+
 void drawGrid()
 {
   for (i=0; i<width/BlockSize; i++)
@@ -39,8 +45,8 @@ void eatFood()
 
 void addSnake()
 {
-  int x, y, listSize;
-  listSize = snakeBody.size();
+  int x, y;
+
   if(score == 1)
   {
     x = snakeHead.posX;
@@ -62,22 +68,21 @@ void addSnake()
 
 void moveSnake()
 {
-  int x, y, listSize;
+  int x, y;
   SnakeTail trail;
-  listSize = snakeBody.size();
   
-  for(int i=listSize-1; i > 0; i--)
+  for(int i=snakeBody.size()-1; i > 0; i--)
   {
     x = snakeBody.get(i-1).posX;
     y = snakeBody.get(i-1).posY;
     trail = new SnakeTail(x, y);
-      snakeBody.set(i, trail);
+    snakeBody.set(i, trail);
   }
   x = snakeHead.posX;
   y = snakeHead.posY;
   trail = new SnakeTail(x, y);
   
-  if(listSize != 0)
+  if(snakeBody.size() != 0)
   {
     snakeBody.set(0, trail);
   }

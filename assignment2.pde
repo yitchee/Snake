@@ -8,6 +8,7 @@ void setup()
 {
   size(600, 600);
   
+  gameState = 0;
   score = 0;
   i=0;
   j=0;
@@ -23,6 +24,7 @@ void setup()
   Direction = "";
 }
 
+int gameState;
 int i, j, score, frames, tempX, tempY;
 int BlockSize, SnakeX, SnakeY, inc, FoodX, FoodY;
 String Direction;
@@ -32,20 +34,30 @@ Food foods;
 
 void draw()
 {
-  if(frameCount % frames == 0)
+  switch (gameState)
   {
-    background(0);
-    drawGrid();
-    fill(255);
-    moveSnake();
-    checkBorder();
-    //println(foods.posX, foods.posY);
-    //println(snakeHead.posX, snakeHead.posY);
-    //println("Score:  "+score);
-    //println("Size:  "+snakeBody.size());
+    case 0:
+      //Main menu
+      gameState = menu();
+      break;
+    case 1:
+      //In-game
+      if(frameCount % frames == 0)
+      {
+        background(0);
+        drawGrid();
+        fill(255);
+        moveSnake();
+        checkBorder();
+      }
+      eatFood();
+      foods.createFood();
+      break;
+    default:
+      //If something doesn't work, white background
+      background(255);
+      break;
   }
-  eatFood();
-  foods.createFood();
 }
 
 void keyPressed()

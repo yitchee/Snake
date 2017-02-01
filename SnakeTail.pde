@@ -4,17 +4,17 @@ class SnakeTail extends Snake
   SnakeTail()
   {
     super();
-    sqColor = color(random(255),random(255),random(255));
+    //sqColor = color(random(255),random(255),random(255));
     
   }
   SnakeTail(int x, int y)
   {
     super(x, y);
-    sqColor = color(random(255),random(255),random(255));
+    //sqColor = color(random(255),random(255),random(255));
   }
   void drawTail()
   {
-    fill(sqColor);
+    //fill(sqColor);
     rect(posX, posY, BlockSize, BlockSize);
   }
 }
