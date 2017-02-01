@@ -8,14 +8,13 @@ class Button
   float fontSize;
   
   //parameterised constructor
-  Button(float x, float y, float sizeW, float sizeH, String buttonText, float fontSize)
+  Button(float x, float y, float sizeW, float sizeH, String buttonText)
   {
     this.x = x;
     this.y = y;
     this.sizeW = sizeW;
     this.sizeH = sizeH;
     this.buttonText = buttonText;
-    this.fontSize = fontSize;
   }
   
   void drawButton()
@@ -25,5 +24,14 @@ class Button
     noFill();
     rect(x, y, sizeW, sizeH);
     text(buttonText, x, y);
+  }
+  
+  boolean checkPress()
+  {
+    if (mouseX<=(x+sizeW/2) && mouseX>=(x-(sizeW/2)) &&  mouseY<=(y+sizeH/2) && mouseY>=y-(sizeH/2))
+    {
+      return true;
+    }
+    return false;
   }
 }

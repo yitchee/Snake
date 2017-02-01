@@ -33,7 +33,7 @@ class Snake
         rect(posX+=inc, posY, BlockSize, BlockSize);
         break;
       default:
-        rect(posX, posY, BlockSize, BlockSize);
+        rect(SnakeX, SnakeY, BlockSize, BlockSize);
         break;
     }
   }

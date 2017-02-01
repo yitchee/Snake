@@ -7,6 +7,7 @@ int menu()
 
 void drawGrid()
 {
+  background(0);
   for (i=0; i<width/BlockSize; i++)
   {
     stroke(50, 50);
@@ -22,11 +23,17 @@ void checkBorder()
 {
   if(snakeHead.posX < 0 || snakeHead.posX > width-1)
   {
-    background(255);
+    gameState = 0;
+    SnakeX = ((width/BlockSize)/2)*BlockSize;
+    SnakeY = ((height/BlockSize)/2)*BlockSize;
+    snakeHead = new Snake(SnakeX, SnakeY);
   }
   if(snakeHead.posY < 0 || snakeHead.posY > height-1)
   {
-    background(255);
+    gameState = 0;
+    SnakeX = ((width/BlockSize)/2)*BlockSize;
+    SnakeY = ((height/BlockSize)/2)*BlockSize;
+    snakeHead = new Snake(SnakeX, SnakeY);
   }
 }
 

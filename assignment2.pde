@@ -25,7 +25,7 @@ void setup()
   Direction = "";
   mainButtonW = 150;
   mainButtonH = 75;
-  playButton = new Button(width/2, height/2, mainButtonW, mainButtonH, "Play", 40);
+  playButton = new Button(width/2, height/2, mainButtonW, mainButtonH, "Play");
   
   //Loading in a font file
   blockFont = createFont("FFFFORWA.TTF", fontSize);
@@ -55,7 +55,6 @@ void draw()
       //In-game
       if(frameCount % frames == 0)
       {
-        background(0);
         drawGrid();
         fill(255);
         moveSnake();
@@ -102,6 +101,21 @@ void keyPressed()
       {
         Direction = "right";
       }
+    }
+    else
+    {
+      Direction = "";
+    }
+  }
+}
+
+void mouseClicked()
+{
+  if (playButton.checkPress() == true)
+  {
+    if (gameState == 0)
+    {
+      gameState = 1;
     }
   }
 }
