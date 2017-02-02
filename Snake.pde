@@ -15,7 +15,6 @@ class Snake extends Entity
   
   void drawSnake()
   {
-    //fill(255);
     switch (Direction)
     {
       case "up":

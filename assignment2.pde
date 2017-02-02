@@ -121,21 +121,3 @@ void keyPressed()
     }
   }
 }
-
-/*void mouseClicked()
-{
-  if (playButton.checkPress() == true)
-  {
-    if (gameState == 0 || gameState == 2)
-    {
-      gameState = 1;
-    }
-  }
-  else if (optionButton.checkPress() == true)
-  {
-    if (gameState == 0)
-    {
-      gameState = 3;
-    }
-  }
-}*/
