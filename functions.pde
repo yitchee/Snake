@@ -2,6 +2,29 @@ int menu()
 {
   background(0);
   playButton.drawButton();
+  optionButton.drawButton();
+  textSize(64);
+  text("Snake", width/2, height/4);
+  return 0;
+}
+
+int optionMenu()
+{
+  Button easyButton = new Button(width/2, height/1.5, mainButtonW*1.1, mainButtonH, "Easy");
+  Button medButton = new Button(width/2, height/1.5, mainButtonW*1.1, mainButtonH, "Medium");
+  Button hardButton = new Button(width/2, height/1.5, mainButtonW*1.1, mainButtonH, "Hard");
+  if(easyButton.checkPress())
+  {
+    return 3;
+  }
+  else if(medButton.checkPress())
+  {
+    return 10;
+  }
+  else if(hardButton.checkPress())
+  {
+    return 20;
+  }
   return 0;
 }
 
@@ -35,11 +58,13 @@ void checkBorder()
 
 void checkCollision()
 {
+  //check if the snake collides with its body
   for (int i=0; i<snakeBody.size()-1; i++)
   {
-    if((snakeHead.posX == snakeBody.get(i).posX) && (snakeHead.posX == snakeBody.get(i).posY))
+    if((snakeHead.posX == snakeBody.get(i).posX) && (snakeHead.posY == snakeBody.get(i).posY))
     {
       resetSnake();
+      break;
     }
   }
 }
@@ -114,11 +139,14 @@ void resetSnake()
   SnakeX = ((width/BlockSize)/2)*BlockSize;
   SnakeY = ((height/BlockSize)/2)*BlockSize;
   snakeHead = new Snake(SnakeX, SnakeY);
+  //highscores.println(score + "\n");
+  //highscores.flush();
+  //highscores.close();
   for (int i=(snakeBody.size())-1; i>=0; i--);
   {
     snakeBody.clear();
-    score = 0;
   }
+  score = 0;
   Direction = "";
 }
 
@@ -126,6 +154,6 @@ void gameOver()
 {
   //When player loses
   background(0);
-  againButton = new Button(width/2, height/2, mainButtonW*1.5, mainButtonH*1.2, "Play Again");
-  againButton.drawButton();
+  playButton = new Button(width/2, height/2, mainButtonW*1.75, mainButtonH, "Play Again");
+  playButton.drawButton();
 }

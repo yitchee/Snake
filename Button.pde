@@ -5,7 +5,6 @@ class Button
   float sizeW;
   float sizeH;
   String buttonText;
-  float fontSize;
   
   //parameterised constructor
   Button(float x, float y, float sizeW, float sizeH, String buttonText)
@@ -24,6 +23,7 @@ class Button
     noFill();
     rect(x, y, sizeW, sizeH);
     fill(255);
+    textSize(fontSize);
     text(buttonText, x, y);
   }
   

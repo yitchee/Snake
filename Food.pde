@@ -1,4 +1,4 @@
-class Food extends Snake
+class Food extends Entity
 {
   Food(int x, int y)
   {

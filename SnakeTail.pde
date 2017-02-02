@@ -1,11 +1,7 @@
-class SnakeTail extends Snake
+class SnakeTail extends Entity
 {
   color sqColor;
-  SnakeTail()
-  {
-    super();
-    //sqColor = color(random(255),random(255),random(255));
-  }
+
   SnakeTail(int x, int y)
   {
     super(x, y);
