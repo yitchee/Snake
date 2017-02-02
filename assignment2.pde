@@ -17,7 +17,7 @@ void setup()
   score = 0;
   i=0;
   j=0;
-  frames = 3;
+  frames = 5;
   BlockSize = 25;
   inc = BlockSize;
   SnakeX = ((width/BlockSize)/2)*BlockSize;
@@ -122,7 +122,7 @@ void keyPressed()
   }
 }
 
-void mouseClicked()
+/*void mouseClicked()
 {
   if (playButton.checkPress() == true)
   {
@@ -138,4 +138,4 @@ void mouseClicked()
       gameState = 3;
     }
   }
-}
+}*/

@@ -4,6 +4,7 @@ class Button
   float y;   //top left
   float sizeW;
   float sizeH;
+  boolean clicked;
   String buttonText;
   
   //parameterised constructor
@@ -14,6 +15,7 @@ class Button
     this.sizeW = sizeW;
     this.sizeH = sizeH;
     this.buttonText = buttonText;
+    this.clicked = false;
   }
   
   void drawButton()
@@ -27,12 +29,15 @@ class Button
     text(buttonText, x, y);
   }
   
-  boolean checkPress()
+  void checkPress()
   {
-    if (mouseX<=(x+sizeW/2) && mouseX>=(x-(sizeW/2)) &&  mouseY<=(y+sizeH/2) && mouseY>=y-(sizeH/2))
+    if (mouseX<=(x+sizeW/2) && mouseX>=(x-(sizeW/2)) &&  mouseY<=(y+sizeH/2) && mouseY>=y-(sizeH/2) && mousePressed)
     {
-      return true;
+        clicked = true;
     }
-    return false;
+    else
+    {
+      clicked = false;
+    }
   }
 }

@@ -2,18 +2,34 @@ int menu()
 {
   background(0);
   playButton.drawButton();
+  playButton.checkPress();
+  if (playButton.clicked == true)
+  {
+    playButton.clicked = false;
+    return 1;
+  }
   optionButton.drawButton();
+  optionButton.checkPress();
+  if (optionButton.clicked == true)
+  {
+    optionButton.clicked = false;
+    return 3;
+  }
   textSize(64);
   text("Snake", width/2, height/4);
   return 0;
 }
 
-int optionMenu()
+void optionMenu()
 {
+  background(0);
   Button easyButton = new Button(width/2, height/1.5, mainButtonW*1.1, mainButtonH, "Easy");
-  Button medButton = new Button(width/2, height/1.5, mainButtonW*1.1, mainButtonH, "Medium");
-  Button hardButton = new Button(width/2, height/1.5, mainButtonW*1.1, mainButtonH, "Hard");
-  if(easyButton.checkPress())
+  Button medButton = new Button(width/2, height/2, mainButtonW*1.2, mainButtonH, "Medium");
+  Button hardButton = new Button(width/2, height/3, mainButtonW*1.1, mainButtonH, "Hard");
+  easyButton.drawButton();
+  medButton.drawButton();
+  hardButton.drawButton();
+  /*if(easyButton.checkPress().clicked == true)
   {
     return 3;
   }
@@ -24,8 +40,8 @@ int optionMenu()
   else if(hardButton.checkPress())
   {
     return 20;
-  }
-  return 0;
+  }*/
+  //return 0;
 }
 
 void drawGrid()
@@ -156,4 +172,10 @@ void gameOver()
   background(0);
   playButton = new Button(width/2, height/2, mainButtonW*1.75, mainButtonH, "Play Again");
   playButton.drawButton();
+  playButton.checkPress();
+  if (playButton.clicked == true)
+  {
+    playButton.clicked = false;
+    gameState = 1;
+  }
 }
