@@ -85,14 +85,35 @@ void checkCollision()
 
 void eatFood()
 {
+  boolean posFlag = false;
   //adds to snake and creates new food
   if((foods.posX == snakeHead.posX) && (foods.posY == snakeHead.posY))
   {
     score++;
     tempX = foods.posX;
     tempY = foods.posY;
-    foods.posX = (int)(random(0,width/BlockSize))*inc;
-    foods.posY = (int)(random(0,height/BlockSize))*inc;
+    
+    do
+    {
+      posFlag = false;
+      foods.posX = (int)(random(0,width/BlockSize))*inc;
+      foods.posY = (int)(random(0,height/BlockSize))*inc;
+      //Checks if the food is created at the snake's head
+      if((foods.posX == snakeHead.posX) && (foods.posY == snakeHead.posY))
+      {
+        posFlag = true;
+      }
+      //checks if the food is created at any point on the snake's body
+      for (int i=0; i<snakeBody.size()-1; i++)
+      {
+        if((foods.posX == snakeBody.get(i).posX) && (foods.posY == snakeBody.get(i).posY))
+        {
+          posFlag = true;
+          println("changed:"+ i);
+          break;
+        }
+      }
+    }while(posFlag == true);
     
     addSnake();
   }
@@ -160,7 +181,6 @@ void resetSnake()
   {
     snakeBody.clear();
   }
-  score = 0;
   Direction = "";
 }
 
@@ -168,13 +188,18 @@ void gameOver()
 {
   //When player loses
   background(0);
-  playButton = new Button(width/2, height/2, mainButtonW*1.75, mainButtonH, "Play Again");
-  playButton.drawButton();
-  playButton.checkPress();
-  if (playButton.clicked == true)
+  text("Score: "+score, width/2, height/3);
+  Button againButton = new Button(width/2, height/2, mainButtonW*1.75, mainButtonH, "Play Again");
+  if (checkButtonPress(againButton) == true)
   {
-    playButton.clicked = false;
     gameState = 1;
+    score = 0;
+  }
+  Button mainButton = new Button(width/2, height/1.5, mainButtonW*1.75, mainButtonH, "Main Menu");
+  if (checkButtonPress(mainButton) == true)
+  {
+    gameState = 0;
+    score = 0;
   }
 }
 
