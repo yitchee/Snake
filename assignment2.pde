@@ -9,9 +9,10 @@ import java.io.BufferedWriter;
 
 void setup()
 {
-  size(600, 600);
+  size(800, 600);
   
   //highscores = new FileWriter("highscores.txt", true);
+  directionFlag = 0;
   fontSize = 32;
   gameState = 0;
   score = 0;
@@ -22,12 +23,11 @@ void setup()
   inc = BlockSize;
   SnakeX = ((width/BlockSize)/2)*BlockSize;
   SnakeY = ((height/BlockSize)/2)*BlockSize;
-  println(SnakeX, SnakeY);
   FoodX = (int)(random(0,width/BlockSize))*inc;
   FoodY = (int)(random(0,height/BlockSize))*inc;
   snakeHead = new Snake(SnakeX, SnakeY);
   foods = new Food(FoodX, FoodY);
-  Direction = "";
+  direction = "";
   mainButtonW = 150;
   mainButtonH = 75;
   playButton = new Button(width/2, height/2, mainButtonW, mainButtonH, "Play");
@@ -40,9 +40,9 @@ void setup()
 
 FileWriter highscores = null;
 int gameState, mainButtonW, mainButtonH, fontSize;
-int i, j, score, frames, tempX, tempY;
+int i, j, score, frames, tempX, tempY, directionFlag;
 int BlockSize, SnakeX, SnakeY, inc, FoodX, FoodY;
-String Direction;
+String direction;
 Snake snakeHead;
 Button playButton, optionButton;
 ArrayList<SnakeTail> snakeBody = new ArrayList<SnakeTail>();
@@ -62,6 +62,7 @@ void draw()
       if(frameCount % frames == 0)
       {
         //moves snake and checks if its within limits
+        directionFlag = 0;
         drawGrid();
         fill(255);
         moveSnake();
@@ -89,35 +90,36 @@ void draw()
 
 void keyPressed()
 {
-  if (key == CODED && gameState == 1) 
+  if (key == CODED && gameState == 1 && directionFlag == 0) 
   {
     if (keyCode == UP) 
     {
-      if(Direction != "down")
+      if(direction != "down")
       {
-        Direction = "up";
+        direction = "up";
       }
     }
     else if (keyCode == DOWN) 
     {
-      if(Direction != "up")
+      if(direction != "up")
       {
-        Direction = "down";
+        direction = "down";
       }
     }
     else if (keyCode == LEFT) 
     {
-      if(Direction != "right")
+      if(direction != "right")
       {
-        Direction = "left";
+        direction = "left";
       }
     }
     else if (keyCode == RIGHT)
     {
-      if(Direction != "left")
+      if(direction != "left")
       {
-        Direction = "right";
+        direction = "right";
       }
     }
+    directionFlag = 1;
   }
 }

@@ -127,8 +127,6 @@ void addSnake()
   {
     x = snakeBody.get(snakeBody.size()-1).posX;
     y = snakeBody.get(snakeBody.size()-1).posY;
-    x = tempX;
-    y = tempY;
   }
   else
   {
@@ -181,7 +179,7 @@ void resetSnake()
   {
     snakeBody.clear();
   }
-  Direction = "";
+  direction = "";
 }
 
 void gameOver()

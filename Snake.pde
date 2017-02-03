@@ -15,7 +15,7 @@ class Snake extends Entity
   
   void drawSnake()
   {
-    switch (Direction)
+    switch (direction)
     {
       case "up":
         rect(posX, posY-=inc, BlockSize, BlockSize);
