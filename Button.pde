@@ -31,9 +31,10 @@ class Button
   
   void checkPress()
   {
-    if (mouseX<=(x+sizeW/2) && mouseX>=(x-(sizeW/2)) &&  mouseY<=(y+sizeH/2) && mouseY>=y-(sizeH/2) && mousePressed)
+    if (mouseX<=(x+sizeW/2) && mouseX>=(x-(sizeW/2)) &&  mouseY<=(y+sizeH/2) && mouseY>=y-(sizeH/2) && mousePressed && pressFlag == 0)
     {
-        clicked = true;
+      clicked = true;
+      pressFlag = 1;
     }
     else
     {

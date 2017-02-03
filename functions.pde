@@ -27,17 +27,17 @@ void optionMenu()
   
   if(checkButtonPress(easyButton) == true)
   {
-    frames = 20;
+    frames = 15;
     gameState = 0;
   }
   else if(checkButtonPress(medButton) == true)
   {
-    frames = 10;
+    frames = 8;
     gameState = 0;
   }
   else if(checkButtonPress(hardButton) == true)
   {
-    frames = 5;
+    frames = 4;
     gameState = 0;
   }
 }
@@ -78,7 +78,13 @@ void checkCollision()
     if((snakeHead.posX == snakeBody.get(i).posX) && (snakeHead.posY == snakeBody.get(i).posY))
     {
       resetSnake();
-      break;
+    }
+  }
+  if (snakeBody.size() > 3)
+  {
+    if((snakeHead.posX == snakeBody.get(snakeBody.size()-1).posX) && (snakeHead.posY == snakeBody.get(snakeBody.size()-1).posY))
+    {
+      resetSnake();
     }
   }
 }
@@ -160,6 +166,8 @@ void moveSnake()
   }
   //draws the whole snake
   snakeHead.drawSnake();
+  checkCollision();
+  fill(0, 255, 0);
   for(int i=0; i < snakeBody.size(); i++)
   {
     snakeBody.get(i).drawTail();

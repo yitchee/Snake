@@ -13,12 +13,13 @@ void setup()
   
   //highscores = new FileWriter("highscores.txt", true);
   directionFlag = 0;
+  pressFlag = 0;
   fontSize = 32;
   gameState = 0;
   score = 0;
   i=0;
   j=0;
-  frames = 5;
+  frames = 4;
   BlockSize = 25;
   inc = BlockSize;
   SnakeX = ((width/BlockSize)/2)*BlockSize;
@@ -40,7 +41,7 @@ void setup()
 
 FileWriter highscores = null;
 int gameState, mainButtonW, mainButtonH, fontSize;
-int i, j, score, frames, tempX, tempY, directionFlag;
+int i, j, score, frames, tempX, tempY, directionFlag, pressFlag;
 int BlockSize, SnakeX, SnakeY, inc, FoodX, FoodY;
 String direction;
 Snake snakeHead;
@@ -67,7 +68,6 @@ void draw()
         fill(255);
         moveSnake();
         checkBorder();
-        checkCollision();
       }
       //adds to snake if food is eaten and creates new food
       eatFood();
@@ -90,6 +90,7 @@ void draw()
 
 void keyPressed()
 {
+  //checks if its in game and if input was already given
   if (key == CODED && gameState == 1 && directionFlag == 0) 
   {
     if (keyCode == UP) 
@@ -122,4 +123,9 @@ void keyPressed()
     }
     directionFlag = 1;
   }
+}
+
+void mouseReleased()
+{
+  pressFlag = 0;
 }
