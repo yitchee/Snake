@@ -4,14 +4,11 @@
  * Year: DT228/2                       *
  * OOP Assignment 2                    *
  ***************************************/
-import java.io.FileWriter;
-import java.io.BufferedWriter;
 
 void setup()
 {
   size(800, 600);
   
-  //highscores = new FileWriter("highscores.txt", true);
   directionFlag = 0;
   pressFlag = 0;
   fontSize = 32;
@@ -32,23 +29,13 @@ void setup()
   mainButtonW = 150;
   mainButtonH = 75;
   playButton = new Button(width/2, height/2, mainButtonW, mainButtonH, "Play");
-  optionButton = new Button(width/2, height/1.5, mainButtonW*1.1, mainButtonH, "Options");
+  optionButton = new Button(width/2, height/1.2, mainButtonW*1.1, mainButtonH, "Options");
+  scoreButton = new Button(width/2, height/1.5, mainButtonW*1.7, mainButtonH, "Highscores");
   //Loading in a font file
   blockFont = createFont("FFFFORWA.TTF", fontSize);
   textFont(blockFont);
   textAlign(CENTER, CENTER);
 }
-
-FileWriter highscores = null;
-int gameState, mainButtonW, mainButtonH, fontSize;
-int i, j, score, frames, tempX, tempY, directionFlag, pressFlag;
-int BlockSize, SnakeX, SnakeY, inc, FoodX, FoodY;
-String direction;
-Snake snakeHead;
-Button playButton, optionButton;
-ArrayList<SnakeTail> snakeBody = new ArrayList<SnakeTail>();
-Food foods;
-PFont blockFont;
 
 void draw()
 {
@@ -80,6 +67,10 @@ void draw()
     case 3:
       //options screen
       optionMenu();
+      break;
+    case 4:
+      //highscores
+      loadScores();
       break;
     default:
       //If something doesn't work, white background

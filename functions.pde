@@ -10,6 +10,10 @@ int menu()
   {
     return 3;
   }
+  if (checkButtonPress(scoreButton) == true)
+  {
+    return 4;
+  }
   textSize(64);
   text("Snake", width/2, height/4);
   return 0;
@@ -168,9 +172,10 @@ void moveSnake()
   snakeHead.drawSnake();
   checkCollision();
   fill(0, 255, 0);
-  for(int i=0; i < snakeBody.size(); i++)
+
+  for(SnakeTail s: snakeBody)
   {
-    snakeBody.get(i).drawTail();
+    s.drawTail();
   }
 }
 
@@ -219,4 +224,22 @@ boolean checkButtonPress(Button b)
     return true;
   }
   return false;
+}
+
+void loadScores()
+{
+  background(0);
+  textSize(fontSize);
+  text("Highscores", width/2, height*.1);
+  textSize(20);
+  int x, i;
+  Table t = loadTable("highscores.csv");
+  for (int row=0; row < t.getRowCount(); row++)
+  {
+    i = t.getInt(row, 0);
+    x = t.getInt(row, 1);
+    text(row+1 + ")", width/3, (i*40)+height*.15);
+    text(x, width/2, (i*40)+height*.15);
+  }
+  
 }

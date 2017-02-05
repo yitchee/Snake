@@ -4,11 +4,6 @@ class Snake extends Entity
   {
     super(x, y);
   }
-  /*Snake(int x, int y)
-  {
-    posX = x;
-    posY = y;
-  }*/
   
   void drawSnake()
   {
