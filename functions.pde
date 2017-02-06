@@ -207,6 +207,11 @@ void gameOver()
 {
   //When player loses
   background(0);
+  if (soundFlag == false)
+  {
+    soundLose.play();
+    soundFlag = true;
+  }
   text("Score: "+score, width/2, height/5);
   textSize(26);
   text("Difficulty: "+ saveDifficulty(), width/2, height/3);
@@ -222,6 +227,7 @@ void gameOver()
     gameState = 1;
     score = 0;
     save = true;
+    soundFlag = false;
   }
   
   Button mainButton = new Button(width/2, height/1.5, mainButtonW*2, mainButtonH, "Main Menu");
@@ -230,6 +236,7 @@ void gameOver()
     gameState = 0;
     score = 0;
     save = true;
+    soundFlag = false;
   }
 }
 

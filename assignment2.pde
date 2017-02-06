@@ -43,7 +43,10 @@ void setup()
   textAlign(CENTER, CENTER);
   
   //Sounds
-  soundEatFood = new SoundFile(this,"Beep4.wav");
+  soundFlag = false;
+  soundEatFood = new SoundFile(this,"food.wav");
+  soundLose = new SoundFile(this, "lose.wav");
+  soundButton = new SoundFile(this, "buttonClick.wav");
 }
 
 void draw()

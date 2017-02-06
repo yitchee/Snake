@@ -33,6 +33,7 @@ class Button
   {
     if (mouseX<=(x+sizeW/2) && mouseX>=(x-(sizeW/2)) &&  mouseY<=(y+sizeH/2) && mouseY>=y-(sizeH/2) && mousePressed && pressFlag == 0)
     {
+      soundButton.play();
       clicked = true;
       pressFlag = 1;
     }
