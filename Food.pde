@@ -4,6 +4,7 @@ class Food extends Entity
   {
     super(x, y);
   }
+  
   void createFood()
   {
     fill(255, 0, 0);

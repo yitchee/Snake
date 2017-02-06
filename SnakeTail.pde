@@ -5,11 +5,10 @@ class SnakeTail extends Entity
   SnakeTail(int x, int y)
   {
     super(x, y);
-    //sqColor = color(random(255),random(255),random(255));
   }
+  
   void drawTail()
   {
-    //fill(sqColor);
     rect(posX, posY, BlockSize, BlockSize);
   }
 }

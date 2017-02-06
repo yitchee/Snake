@@ -16,6 +16,8 @@ void setup()
   score = 0;
   i=0;
   j=0;
+  save = true;
+  
   frames = 4;
   BlockSize = 25;
   inc = BlockSize;
@@ -26,11 +28,13 @@ void setup()
   snakeHead = new Snake(SnakeX, SnakeY);
   foods = new Food(FoodX, FoodY);
   direction = "";
-  mainButtonW = 150;
+  
+  mainButtonW = 130;
   mainButtonH = 75;
   playButton = new Button(width/2, height/2, mainButtonW, mainButtonH, "Play");
-  optionButton = new Button(width/2, height/1.2, mainButtonW*1.1, mainButtonH, "Options");
-  scoreButton = new Button(width/2, height/1.5, mainButtonW*1.7, mainButtonH, "Highscores");
+  optionButton = new Button(width/2, height/1.2, mainButtonW*1.4, mainButtonH, "Options");
+  scoreButton = new Button(width/2, height/1.5, mainButtonW*2, mainButtonH, "Highscores");
+  
   //Loading in a font file
   blockFont = createFont("FFFFORWA.TTF", fontSize);
   textFont(blockFont);
