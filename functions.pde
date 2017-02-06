@@ -99,6 +99,7 @@ void checkCollision()
 void eatFood()
 {
   boolean posFlag = false;
+  
   //adds to snake and creates new food
   if((foods.posX == snakeHead.posX) && (foods.posY == snakeHead.posY))
   {
@@ -136,6 +137,9 @@ void eatFood()
 void addSnake()
 {
   int x, y;
+  
+  soundEatFood.play();
+
   //creates a new block at the end of the snake
   if(score != 1)
   {
@@ -206,7 +210,7 @@ void gameOver()
   text("Score: "+score, width/2, height/5);
   textSize(26);
   text("Difficulty: "+ saveDifficulty(), width/2, height/3);
-  if(save == true)
+  if(save == true && score > 0)
   {
     //checks if score is in top 10
     saveScore(score);
@@ -252,7 +256,7 @@ void loadScores()
   int x, i;
   String difficulty;
   
-  Button mainButton = new Button(width/1.25, height/1.1, mainButtonW*1.9, mainButtonH, "Main Menu");
+  Button mainButton = new Button(width/1.2, height/1.075, mainButtonW*1.9, mainButtonH, "Main Menu");
   if (checkButtonPress(mainButton) == true)
   {
     gameState = 0;
@@ -290,7 +294,7 @@ void saveScore(int newScore)
   numbers[10] = newScore;
   difficulties[10] = saveDifficulty();
   
-  //sorts the score
+  //sorts the scores
   for (int i=0; i<numbers.length; i++)
   {
     for (int j=1; j<(numbers.length)-i; j++)
@@ -306,9 +310,9 @@ void saveScore(int newScore)
       }
     }
   }
-
-  t.clearRows();
   
+  //deletes data and inserts again
+  t.clearRows();
   for(int i=0; i<10; i++)
   {
     TableRow newRow = t.addRow();
@@ -322,6 +326,7 @@ void saveScore(int newScore)
 
 String saveDifficulty()
 {
+  //returns difficulty to be shown and saved
   if(frames == 3)
   {
     return "HARD";

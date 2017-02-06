@@ -18,6 +18,7 @@ void setup()
   j=0;
   save = true;
   
+  //entities
   frames = 3;
   BlockSize = 25;
   inc = BlockSize;
@@ -29,6 +30,7 @@ void setup()
   foods = new Food(FoodX, FoodY);
   direction = "";
   
+  //buttons
   mainButtonW = 130;
   mainButtonH = 75;
   playButton = new Button(width/2, height/2, mainButtonW, mainButtonH, "Play");
@@ -39,6 +41,9 @@ void setup()
   blockFont = createFont("FFFFORWA.TTF", fontSize);
   textFont(blockFont);
   textAlign(CENTER, CENTER);
+  
+  //Sounds
+  soundEatFood = new SoundFile(this,"Beep4.wav");
 }
 
 void draw()

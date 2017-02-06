@@ -12,3 +12,4 @@ ArrayList<SnakeTail> snakeBody = new ArrayList<SnakeTail>();
 Food foods;
 PFont blockFont;
 boolean save;
+SoundFile soundEatFood;
