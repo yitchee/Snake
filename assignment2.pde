@@ -18,7 +18,7 @@ void setup()
   j=0;
   save = true;
   
-  frames = 4;
+  frames = 3;
   BlockSize = 25;
   inc = BlockSize;
   SnakeX = ((width/BlockSize)/2)*BlockSize;

@@ -1,3 +1,5 @@
+import processing.sound.*;
+
 String line;
 int gameState, mainButtonW, mainButtonH, fontSize;
 int i, j, score, frames, tempX, tempY;

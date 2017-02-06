@@ -2,6 +2,7 @@ int menu()
 {
   background(0);
   
+  //checks for any clicks on the 3 buttons
   if (checkButtonPress(playButton) == true)
   {
     return 1;
@@ -29,19 +30,20 @@ void optionMenu()
   textSize(50);
   text("Diffifulty", width/2, height/5);
   
+  //checks for button press and changes the speed of snake movement
   if(checkButtonPress(easyButton) == true)
   {
-    frames = 15;
+    frames = 12;
     gameState = 0;
   }
   else if(checkButtonPress(medButton) == true)
   {
-    frames = 8;
+    frames = 7;
     gameState = 0;
   }
   else if(checkButtonPress(hardButton) == true)
   {
-    frames = 4;
+    frames = 3;
     gameState = 0;
   }
 }
@@ -84,6 +86,7 @@ void checkCollision()
       resetSnake();
     }
   }
+  //Stops the snake from going through the last block of the body
   if (snakeBody.size() > 3)
   {
     if((snakeHead.posX == snakeBody.get(snakeBody.size()-1).posX) && (snakeHead.posY == snakeBody.get(snakeBody.size()-1).posY))
@@ -106,6 +109,7 @@ void eatFood()
     do
     {
       posFlag = false;
+      //generates position for the food (could result in infinite loop)
       foods.posX = (int)(random(0,width/BlockSize))*inc;
       foods.posY = (int)(random(0,height/BlockSize))*inc;
       //Checks if the food is created at the snake's head
@@ -181,11 +185,13 @@ void moveSnake()
 
 void resetSnake()
 {
+  //goes to gameover screen
   gameState = 2;
   SnakeX = ((width/BlockSize)/2)*BlockSize;
   SnakeY = ((height/BlockSize)/2)*BlockSize;
   snakeHead = new Snake(SnakeX, SnakeY);
   
+  //deletes array list
   for (int i=(snakeBody.size())-1; i>=0; i--);
   {
     snakeBody.clear();
@@ -197,19 +203,23 @@ void gameOver()
 {
   //When player loses
   background(0);
-  text("Score: "+score, width/2, height/3);
+  text("Score: "+score, width/2, height/5);
+  textSize(26);
+  text("Difficulty: "+ saveDifficulty(), width/2, height/3);
   if(save == true)
   {
+    //checks if score is in top 10
     saveScore(score);
   }
-  Button againButton = new Button(width/2, height/2, mainButtonW*1.9, mainButtonH, "Play Again");
   
+  Button againButton = new Button(width/2, height/2, mainButtonW*1.9, mainButtonH, "Play Again");
   if (checkButtonPress(againButton) == true)
   {
     gameState = 1;
     score = 0;
     save = true;
   }
+  
   Button mainButton = new Button(width/2, height/1.5, mainButtonW*2, mainButtonH, "Main Menu");
   if (checkButtonPress(mainButton) == true)
   {
@@ -221,6 +231,7 @@ void gameOver()
 
 boolean checkButtonPress(Button b)
 {
+  //draws buttons and checks for presses
   b.drawButton();
   b.checkPress();
   if (b.clicked == true)
@@ -233,11 +244,14 @@ boolean checkButtonPress(Button b)
 
 void loadScores()
 {
+  //reads from .csv file
   background(0);
   textSize(fontSize);
+  Table t = loadTable("highscores.csv", "header");
   text("Highscores", width/2, height*.1);
-  
   int x, i;
+  String difficulty;
+  
   Button mainButton = new Button(width/1.25, height/1.1, mainButtonW*1.9, mainButtonH, "Main Menu");
   if (checkButtonPress(mainButton) == true)
   {
@@ -246,13 +260,15 @@ void loadScores()
   }
   
   textSize(20);
-  Table t = loadTable("highscores.csv");
-  for (int row=1; row < t.getRowCount(); row++)
+  //reads the data and prints onto screen
+  for (int row=0; row < t.getRowCount(); row++)
   {
     i = t.getInt(row, 0);
     x = t.getInt(row, 1);
+    difficulty = t.getString(row, 2);
     text(i + ")", width/3, (i*40)+height*.15);
     text(x, width/2, (i*40)+height*.15);
+    text(difficulty, width/1.5, (i*40)+height*.15);
   }
 }
 
@@ -260,13 +276,21 @@ void saveScore(int newScore)
 {
   Table t= loadTable("highscores.csv", "header");
   int[] numbers = new int[11];
+  String[] difficulties = new String[11];
   int temp=0;
+  String sTemp = "";
   
+  //stores data from file into array
   for (int row=0; row < t.getRowCount(); row++)
   {
     numbers[row] = t.getInt(row, "score");
+    difficulties[row] = t.getString(row, "difficulty");
   }
+  //adds new score and difficulty into last position of array
   numbers[10] = newScore;
+  difficulties[10] = saveDifficulty();
+  
+  //sorts the score
   for (int i=0; i<numbers.length; i++)
   {
     for (int j=1; j<(numbers.length)-i; j++)
@@ -274,8 +298,11 @@ void saveScore(int newScore)
       if (numbers[j-1] < numbers[j])
       {
         temp = numbers[j-1];
+        sTemp = difficulties[j-1];
         numbers[j-1] = numbers[j];
+        difficulties[j-1] = difficulties[j];
         numbers[j] = temp;
+        difficulties[j] = sTemp;
       }
     }
   }
@@ -287,7 +314,28 @@ void saveScore(int newScore)
     TableRow newRow = t.addRow();
     newRow.setInt("pos", i+1);
     newRow.setInt("score", numbers[i]);
+    newRow.setString("difficulty", difficulties[i]);
   }
   saveTable(t, "data/highscores.csv");
   save = false;
+}
+
+String saveDifficulty()
+{
+  if(frames == 3)
+  {
+    return "HARD";
+  }
+  else if(frames == 7)
+  {
+    return "MED";
+  }
+  else if(frames == 12)
+  {
+    return "EASY";
+  }
+  else
+  {
+    return "N/A";
+  }
 }
