@@ -1,11 +1,10 @@
 import processing.sound.*;
 
-String line;
 int gameState, mainButtonW, mainButtonH, fontSize;
-int i, j, score, frames, tempX, tempY;
-int directionFlag, pressFlag;
+int i, j, score, frames, tempX, tempY, currentScore;
+int directionFlag, pressFlag, playedFlag, scoreFlag;
 int BlockSize, SnakeX, SnakeY, inc, FoodX, FoodY, alpha;
-String direction;
+String direction, currentDiff;
 Snake snakeHead;
 Button playButton, optionButton, scoreButton;
 ArrayList<SnakeTail> snakeBody = new ArrayList<SnakeTail>();

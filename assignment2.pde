@@ -10,7 +10,9 @@ void setup()
   size(800, 600);
   
   directionFlag = 0;
+  playedFlag = 0;
   pressFlag = 0;
+  scoreFlag = 0;
   fontSize = 32;
   gameState = 0;
   score = 0;
@@ -63,6 +65,7 @@ void draw()
       if(frameCount % frames == 0)
       {
         //moves snake and checks if its within limits
+        playedFlag = 1;
         directionFlag = 0;
         drawGrid();
         fill(255, alpha);

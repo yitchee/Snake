@@ -210,13 +210,14 @@ void gameOver()
     soundLose.play();
     soundFlag = true;
   }
-
+  currentDiff = saveDifficulty();
   text("Score: "+score, width/2, height/5);
   textSize(26);
-  text("Difficulty: "+ saveDifficulty(), width/2, height/3);
+  text("Difficulty: "+ currentDiff, width/2, height/3);
   if(save == true && score > 0)
   {
     //checks if score is in top 10
+    currentScore = score;
     saveScore(score);
   }
   
@@ -258,6 +259,7 @@ void loadScores()
   background(0);
   textSize(fontSize);
   Table t = loadTable("highscores.csv", "header");
+  fill(255);
   text("Highscores", width/2, height*.1);
   int x, i;
   String difficulty;
@@ -266,7 +268,6 @@ void loadScores()
   if (checkButtonPress(mainButton) == true)
   {
     gameState = 0;
-    score = 0;
   }
   
   textSize(20);
@@ -276,9 +277,22 @@ void loadScores()
     i = t.getInt(row, 0);
     x = t.getInt(row, 1);
     difficulty = t.getString(row, 2);
+    
+    fill(255);
     text(i + ")", width/3, (i*40)+height*.15);
     text(x, width/2, (i*40)+height*.15);
     text(difficulty, width/1.5, (i*40)+height*.15);
+    
+    if(currentScore == x && playedFlag > 0)
+    {
+      if(currentDiff.equals(difficulty) && scoreFlag == 0)
+      {
+        fill(0, 255, 0);
+        text(i + ")", width/3, (i*40)+height*.15);
+        text(x, width/2, (i*40)+height*.15);
+        text(difficulty, width/1.5, (i*40)+height*.15);
+      }
+    }
   }
 }
 
