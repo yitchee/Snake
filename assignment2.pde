@@ -29,6 +29,7 @@ void setup()
   snakeHead = new Snake(SnakeX, SnakeY);
   foods = new Food(FoodX, FoodY);
   direction = "";
+  alpha = 255;
   
   //buttons
   mainButtonW = 130;
@@ -64,7 +65,7 @@ void draw()
         //moves snake and checks if its within limits
         directionFlag = 0;
         drawGrid();
-        fill(255);
+        fill(255, alpha);
         moveSnake();
         checkBorder();
       }

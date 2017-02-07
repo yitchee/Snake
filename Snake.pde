@@ -1,5 +1,5 @@
 class Snake extends Entity
-{
+{  
   Snake(int x, int y)
   {
     super(x, y);

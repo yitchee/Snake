@@ -33,12 +33,12 @@ void optionMenu()
   //checks for button press and changes the speed of snake movement
   if(checkButtonPress(easyButton) == true)
   {
-    frames = 12;
+    frames = 10;
     gameState = 0;
   }
   else if(checkButtonPress(medButton) == true)
   {
-    frames = 7;
+    frames = 6;
     gameState = 0;
   }
   else if(checkButtonPress(hardButton) == true)
@@ -54,7 +54,7 @@ void drawGrid()
   background(0);
   for (i=0; i<width/BlockSize; i++)
   {
-    stroke(50, 50);
+    stroke(25, 45);
     noFill();
     for (j=0; j<height/BlockSize; j++)
     {
@@ -137,7 +137,6 @@ void eatFood()
 void addSnake()
 {
   int x, y;
-  
   soundEatFood.play();
 
   //creates a new block at the end of the snake
@@ -179,7 +178,6 @@ void moveSnake()
   //draws the whole snake
   snakeHead.drawSnake();
   checkCollision();
-  fill(0, 255, 0);
 
   for(SnakeTail s: snakeBody)
   {
@@ -212,6 +210,7 @@ void gameOver()
     soundLose.play();
     soundFlag = true;
   }
+
   text("Score: "+score, width/2, height/5);
   textSize(26);
   text("Difficulty: "+ saveDifficulty(), width/2, height/3);
@@ -297,6 +296,7 @@ void saveScore(int newScore)
     numbers[row] = t.getInt(row, "score");
     difficulties[row] = t.getString(row, "difficulty");
   }
+  
   //adds new score and difficulty into last position of array
   numbers[10] = newScore;
   difficulties[10] = saveDifficulty();
@@ -338,11 +338,11 @@ String saveDifficulty()
   {
     return "HARD";
   }
-  else if(frames == 7)
+  else if(frames == 6)
   {
     return "MED";
   }
-  else if(frames == 12)
+  else if(frames == 10)
   {
     return "EASY";
   }

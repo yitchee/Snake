@@ -1,7 +1,5 @@
 class SnakeTail extends Entity
 {
-  color sqColor;
-
   SnakeTail(int x, int y)
   {
     super(x, y);
@@ -9,6 +7,7 @@ class SnakeTail extends Entity
   
   void drawTail()
   {
+    fill(255, alpha);
     rect(posX, posY, BlockSize, BlockSize);
   }
 }
