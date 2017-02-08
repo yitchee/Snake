@@ -1,7 +1,7 @@
 # Snake
 ##OOP Assignment 2 : DT228/2
 ##Video
-[![YouTube](http://i.imgur.com/sdjvFzI.jpg)](https://www.youtube.com/watch?v=DhkGO3F-yLo)
+[![YouTube](http://i.imgur.com/0mcs6PK.png)](https://www.youtube.com/watch?v=fKM5ZR9Qft0)
 
 ###Overview
 This program is a remake of the classic game Snake.

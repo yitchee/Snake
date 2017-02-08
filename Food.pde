@@ -7,6 +7,7 @@ class Food extends Entity
   
   void createFood()
   {
+    noStroke();
     fill(255, 0, 0);
     rect(posX, posY, BlockSize, BlockSize);
   }
