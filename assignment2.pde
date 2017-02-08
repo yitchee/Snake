@@ -54,6 +54,10 @@ void setup()
 
 void draw()
 {
+  noFill();
+  stroke(255);
+  rectMode(CORNER);
+  rect(0, 0, width-1, height-1);
   switch (gameState)
   {
     case 0:
